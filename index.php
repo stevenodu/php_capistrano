@@ -2,6 +2,7 @@
 <html>
 <body>
 <?php
+echo "Author: Stephen Oduor";
 echo "Hi there ... <br> This is a simple PHP application deployed by Capistrano <br><br>";
 echo "Today is " . date("Y-m-d");
 date_default_timezone_set("Africa/Nairobi");
