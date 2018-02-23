@@ -19,33 +19,32 @@ echo " there are $days_remaining days, $hours_remaining hours, $min minutes and 
 	$result = "";
 class calculator
 {
-	    var $a;
-	        var $b;
+    var $a;
+	    var $b;
+        function checkopration($oprator)
+	    {
+            switch($oprator)
+            {
+                case '+':
+	            return $this->a + $this->b;
+	            break;
 
-	        function checkopration($oprator)
-			    {
-				            switch($oprator)
-						            {
-								                case '+':
-											            return $this->a + $this->b;
-												                break;
+                case '-':
+	            return $this->a - $this->b;
+                break;
 
-												                case '-':
-															            return $this->a - $this->b;
-																                break;
+                case '*':
+	            return $this->a * $this->b;
+                break;
 
-																                case '*':
-																			            return $this->a * $this->b;
-																				                break;
+                case '/':
+	            return $this->a / $this->b;
+                break;
 
-																				                case '/':
-																							            return $this->a / $this->b;
-																								                break;
-
-																								                default:
-																										            return "Sorry No command found";
-																											            }   
-					        }
+                default:
+	            return "Sorry No command found";
+            }   
+        }
 		    function getresult($a, $b, $c)
 			        {
 					        $this->a = $a;
@@ -110,7 +109,7 @@ fieldset legend {
 
     <tr>
         <td></td>
-        <td><input type="submit" name="submit" value="                =                "></td>
+        <td><input type="submit" name="submit" value="="></td>
     </tr>
     
 
