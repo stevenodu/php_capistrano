@@ -27,7 +27,7 @@ This creates the following structure:\
 
 
 # 3. Configure deploy.rb
-Edit the config/deploy.rb file to define global settings for your deployment:\
+Edit the config/deploy.rb file to define global settings for your deployment:
 >config/deploy.rb
 
 >Application name\
@@ -48,22 +48,22 @@ Edit the config/deploy.rb file to define global settings for your deployment:\
 `append :linked_dirs, "storage", "vendor"`
 
 >Number of releases to keep\
-set :keep_releases, 5
+`set :keep_releases, 5`
 
 
 # 4. Configure Environment Files
 Edit config/deploy/production.rb and config/deploy/staging.rb to define server-specific settings:
 
-**Example:** config/deploy/production.rb
+**Example:** config/deploy/production.rb\
 `server "your-server-ip", user: "your-username", roles: %w{app web db}, primary: true`
 
-Define the branch to deploy
+Define the branch to deploy\
 `set :branch, "main"`
 
-**Example**: config/deploy/staging.rb
+**Example**: config/deploy/staging.rb\
 `server "your-staging-server-ip", user: "your-username", roles: %w{app web db}, primary: true`
 
-Define the branch to deploy
+Define the branch to deploy\
 `set :branch, "develop"`
 
 
@@ -71,14 +71,14 @@ Define the branch to deploy
 Define custom tasks in the Capfile or lib/capistrano/tasks directory to automate deployment steps. For example:
 
 Restarting Apache:
-* *Capfile* *\
-namespace:deploy do\
-  after :publishing, :restart do\
-    on roles(:app) do\
-      execute :sudo, :systemctl, :restart, "apache2"\
-    end\
-  end\
-end
+**Capfile**
+    namespace :deploy do
+    after :publishing, :restart do
+        on roles(:app) do
+        execute :sudo, :systemctl, :restart, "apache2"
+        end
+    end
+    end
 
 
 >Running Composer (if applicable):
@@ -111,13 +111,13 @@ You can define additional hooks for automated steps like running tests or cleani
 >Run tests before deployment
 before "deploy:starting", "deploy:run_tests"
 
-namespace :deploy do\
-  desc "Run tests"\
-  task :run_tests do\
-    on roles(:app) do\
-      within release_path do\
-        execute :php, "artisan test" # Example for Laravel; modify as needed\
-      end\
-    end\
-  end\
-end
+    namespace :deploy do
+    desc "Run tests"
+    task :run_tests do
+        on roles(:app) do
+        within release_path do
+            execute :php, "artisan test" # Example for Laravel; modify as needed\
+        end
+        end
+    end
+    end
