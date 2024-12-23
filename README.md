@@ -1,17 +1,17 @@
-# php_capistrano
+# App Deployment with Capistrano
 This is a simple PHP calculator that you will deploy into an AWS EC2 instance using capistrano.
 
 Capistrano is a Ruby-based tool, so you’ll need to configure it with scripts for deployment tasks such as uploading code, restarting services, and setting up dependencies.
 
 Below is a step by step guide on installing, setting up and deploying using capistrano.
 
-**1. Install Capistrano**
+# 1. Install Capistrano
 Ensure you have Ruby installed, then install Capistrano and any necessary plugins:
 `gem install capistrano`
 `gem install capistrano-composer` # If you're using Composer for PHP dependencies
 
 
-**2. Initialize Capistrano**
+# 2. Initialize Capistrano
 Run the following command in your project directory to set up Capistrano:
 `cap install`
 This creates the following structure:
@@ -26,7 +26,7 @@ This creates the following structure:
 │       └── tasks
 
 
-**3. Configure deploy.rb**
+# 3. Configure deploy.rb
 Edit the config/deploy.rb file to define global settings for your deployment:
 >config/deploy.rb
 
@@ -51,7 +51,7 @@ append :linked_dirs, "storage", "vendor"
 set :keep_releases, 5
 
 
-**4. Configure Environment Files**
+# 4. Configure Environment Files
 Edit config/deploy/production.rb and config/deploy/staging.rb to define server-specific settings:
 
 **Example:** config/deploy/production.rb
@@ -67,7 +67,7 @@ Define the branch to deploy
 `set :branch, "develop"`
 
 
-**5. Add Deployment Tasks**
+# 5. Add Deployment Tasks
 Define custom tasks in the Capfile or lib/capistrano/tasks directory to automate deployment steps. For example:
 
 Restarting Apache:
@@ -86,7 +86,7 @@ Running Composer (if applicable):
 require "capistrano/composer"
 
 
-**6. Deploy Using Capistrano**
+# 6. Deploy Using Capistrano
 To deploy your application, run:
 cap production deploy
 
