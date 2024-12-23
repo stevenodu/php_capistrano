@@ -1,9 +1,9 @@
 # App Deployment with Capistrano
-This is a simple PHP calculator that you will deploy into an AWS EC2 instance using capistrano. \
+This is a simple PHP calculator that you will deploy into an AWS EC2 instance using capistrano.
 
-Capistrano is a Ruby-based tool, so you’ll need to configure it with scripts for deployment tasks such as uploading code, restarting services, and setting up dependencies.\
+Capistrano is a Ruby-based tool, so you’ll need to configure it with scripts for deployment tasks such as uploading code, restarting services, and setting up dependencies.
 
-Below is a step by step guide on installing, setting up and deploying using capistrano.\
+Below is a step by step guide on installing, setting up and deploying using capistrano.
 
 # 1. Install Capistrano
 Ensure you have Ruby installed, then install Capistrano and any necessary plugins:\
@@ -23,7 +23,7 @@ This creates the following structure:\
 │   │   └── staging.rb\
 ├── lib\
 │   └── capistrano\
-│       └── tasks\
+│       └── tasks
 
 
 # 3. Configure deploy.rb
@@ -31,21 +31,21 @@ Edit the config/deploy.rb file to define global settings for your deployment:\
 >config/deploy.rb
 
 >Application name
-set :application, "php_app"
+`set :application, "php_app"`
 
 >Repository URL (use your git repository)
-set :repo_url, "git@github.com:yourusername/your-php-app.git"
+`set :repo_url, "git@github.com:yourusername/your-php-app.git"`
 
 >Deployment directory on the server
-set :deploy_to, "/var/www/#{fetch(:application)}"
+`set :deploy_to, "/var/www/#{fetch(:application)}"`
 
 >PHP-specific configurations
-set :php_path, "/usr/bin/php" # Path to PHP binary
-set :composer_install_flags, '--no-dev --quiet --optimize-autoloader' # Composer flags
+`set :php_path, "/usr/bin/php"` # Path to PHP binary\
+`set :composer_install_flags, '--no-dev --quiet --optimize-autoloader'` # Composer flags
 
 >Files and directories to be linked between deployments
-append :linked_files, "config/database.php"
-append :linked_dirs, "storage", "vendor"
+`append :linked_files, "config/database.php"`\
+`append :linked_dirs, "storage", "vendor"`
 
 >Number of releases to keep
 set :keep_releases, 5
@@ -71,24 +71,24 @@ Define the branch to deploy
 Define custom tasks in the Capfile or lib/capistrano/tasks directory to automate deployment steps. For example:
 
 Restarting Apache:
-* *Capfile* *
-`namespace :deploy do
-  after :publishing, :restart do
-    on roles(:app) do
-      execute :sudo, :systemctl, :restart, "apache2"
-    end
-  end
-end`
+* *Capfile* *\
+namespace:deploy do\
+  after :publishing, :restart do\
+    on roles(:app) do\
+      execute :sudo, :systemctl, :restart, "apache2"\
+    end\
+  end\
+end
 
 
-Running Composer (if applicable):
-# Capfile
-require "capistrano/composer"
+>Running Composer (if applicable):
+Capfile
+`require "capistrano/composer"`
 
 
 # 6. Deploy Using Capistrano
 To deploy your application, run:
-cap production deploy
+`cap production deploy`
 
 Capistrano will:
 
@@ -111,13 +111,13 @@ You can define additional hooks for automated steps like running tests or cleani
 >Run tests before deployment
 before "deploy:starting", "deploy:run_tests"
 
-namespace :deploy do
-  desc "Run tests"
-  task :run_tests do
-    on roles(:app) do
-      within release_path do
-        execute :php, "artisan test" # Example for Laravel; modify as needed
-      end
-    end
-  end
+namespace :deploy do\
+  desc "Run tests"\
+  task :run_tests do\
+    on roles(:app) do\
+      within release_path do\
+        execute :php, "artisan test" # Example for Laravel; modify as needed\
+      end\
+    end\
+  end\
 end
