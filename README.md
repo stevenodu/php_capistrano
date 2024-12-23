@@ -7,13 +7,13 @@ Below is a step by step guide on installing, setting up and deploying using capi
 
 # 1. Install Capistrano
 Ensure you have Ruby installed, then install Capistrano and any necessary plugins:\
-`gem install capistrano`\
-`gem install capistrano-composer` # If you're using Composer for PHP dependencies
+    `gem install capistrano`\
+    `gem install capistrano-composer` # If you're using Composer for PHP dependencies
 
 
 # 2. Initialize Capistrano
 Run the following command in your project directory to set up Capistrano:\
-`cap install`\
+    `cap install`\
 This creates the following structure:\
 ├── Capfile\
 ├── config\
@@ -31,40 +31,40 @@ Edit the config/deploy.rb file to define global settings for your deployment:
 >config/deploy.rb
 
 >Application name\
-`set :application, "php_app"`
+    `set :application, "php_app"`
 
 >Repository URL (use your git repository)\
-`set :repo_url, "git@github.com:yourusername/your-php-app.git"`
+    `set :repo_url, "git@github.com:yourusername/your-php-app.git"`
 
 >Deployment directory on the server\
-`set :deploy_to, "/var/www/#{fetch(:application)}"`
+    `set :deploy_to, "/var/www/#{fetch(:application)}"`
 
 >PHP-specific configurations\
-`set :php_path, "/usr/bin/php"` # Path to PHP binary\
-`set :composer_install_flags, '--no-dev --quiet --optimize-autoloader'` # Composer flags
+    `set :php_path, "/usr/bin/php"` # Path to PHP binary\
+    `set :composer_install_flags, '--no-dev --quiet --optimize-autoloader'` # Composer flags
 
 >Files and directories to be linked between deployments\
-`append :linked_files, "config/database.php"`\
-`append :linked_dirs, "storage", "vendor"`
+    `append :linked_files, "config/database.php"`\
+    `append :linked_dirs, "storage", "vendor"`
 
 >Number of releases to keep\
-`set :keep_releases, 5`
+    `set :keep_releases, 5`
 
 
 # 4. Configure Environment Files
 Edit config/deploy/production.rb and config/deploy/staging.rb to define server-specific settings:
 
 **Example:** config/deploy/production.rb\
-`server "your-server-ip", user: "your-username", roles: %w{app web db}, primary: true`
+    `server "your-server-ip", user: "your-username", roles: %w{app web db}, primary: true`
 
 Define the branch to deploy\
-`set :branch, "main"`
+    `set :branch, "main"`
 
 **Example**: config/deploy/staging.rb\
-`server "your-staging-server-ip", user: "your-username", roles: %w{app web db}, primary: true`
+    `server "your-staging-server-ip", user: "your-username", roles: %w{app web db}, primary: true`
 
 Define the branch to deploy\
-`set :branch, "develop"`
+    `set :branch, "develop"`
 
 
 # 5. Add Deployment Tasks
@@ -83,12 +83,12 @@ Restarting Apache:
 
 >Running Composer (if applicable):
 Capfile
-`require "capistrano/composer"`
+    `require "capistrano/composer"`
 
 
 # 6. Deploy Using Capistrano
 To deploy your application, run:
-`cap production deploy`
+    `cap production deploy`
 
 Capistrano will:
 
