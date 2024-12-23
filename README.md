@@ -30,24 +30,24 @@ This creates the following structure:\
 Edit the config/deploy.rb file to define global settings for your deployment:\
 >config/deploy.rb
 
->Application name
+>Application name\
 `set :application, "php_app"`
 
->Repository URL (use your git repository)
+>Repository URL (use your git repository)\
 `set :repo_url, "git@github.com:yourusername/your-php-app.git"`
 
->Deployment directory on the server
+>Deployment directory on the server\
 `set :deploy_to, "/var/www/#{fetch(:application)}"`
 
->PHP-specific configurations
+>PHP-specific configurations\
 `set :php_path, "/usr/bin/php"` # Path to PHP binary\
 `set :composer_install_flags, '--no-dev --quiet --optimize-autoloader'` # Composer flags
 
->Files and directories to be linked between deployments
+>Files and directories to be linked between deployments\
 `append :linked_files, "config/database.php"`\
 `append :linked_dirs, "storage", "vendor"`
 
->Number of releases to keep
+>Number of releases to keep\
 set :keep_releases, 5
 
 
