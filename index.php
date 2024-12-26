@@ -1,7 +1,7 @@
 <?php
 date_default_timezone_set("Africa/Nairobi"); // Set timezone
 ?>
-
+<?php include 'calculator.php'; ?>
 <html>
 <head>
     <title>PHP Application</title>

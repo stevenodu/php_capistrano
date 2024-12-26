@@ -27,8 +27,10 @@ class Calculator
     }
 }
 
-// Handle form submission
+// Initialize result to an empty string to avoid undefined variable issues.
 $result = "";
+
+// Handle form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $calculator = new Calculator();
     $result = $calculator->calculate($_POST['n1'], $_POST['n2'], $_POST['op']);
