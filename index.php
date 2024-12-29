@@ -1,3 +1,4 @@
+#This is the frontend page
 <?php
 date_default_timezone_set("Africa/Nairobi"); // Set timezone
 ?>
